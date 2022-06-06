@@ -1,0 +1,30 @@
+apiVersion: pingcap.com/v1alpha1
+kind: Restore
+metadata:
+  name: demo2-restore-gcs20
+  namespace: tidb-cluster
+spec:
+  # backupType: full
+  br:
+    cluster: basic
+    clusterNamespace: tidb-cluster
+    logLevel: info
+    # statusAddr: ${status-addr}
+    # concurrency: 4
+    # rateLimit: 0
+    # checksum: false
+    # sendCredToTikv: true
+  # Only needed for TiDB Operator < v1.1.10 or TiDB < v4.0.8
+  # to:
+  #   host: ${tidb_host}
+  #   port: ${tidb_port}
+  #   user: ${tidb_user}
+  #   secretName: restore-demo2-tidb-secret
+  gcs:
+    projectId: storage-project-352409
+    secretName: gcs-secret1
+    bucket: tidb-test-versent
+    prefix: test-tidb/basic-pd.tidb-cluster-2379-2022-06-05t19-06-00
+    # location: us-east1
+    # storageClass: STANDARD_IA
+    # objectAcl: private

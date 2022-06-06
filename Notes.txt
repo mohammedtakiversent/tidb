@@ -1,0 +1,6 @@
+create secret from storage-project-352409-88a73a9d608b.json
+
+kubectl create secret generic gcs-secret1 --from-file=credentials=./storage-project-352409-88a73a9d608b.json -n tidb-cluster
+
+secret/gcs-secret1 created
+

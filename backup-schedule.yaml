@@ -1,0 +1,35 @@
+---
+apiVersion: pingcap.com/v1alpha1
+kind: BackupSchedule
+metadata:
+  name: demo1-backup-schedule-gcs
+  namespace: tidb-cluster
+spec:
+  #maxBackups: 5
+  #pause: true
+  maxReservedTime: "3h"
+  schedule: "*/2 * * * *"
+  backupTemplate:
+    # Only needed for TiDB Operator < v1.1.10 or TiDB < v4.0.8
+    # from:
+    #   host: ${tidb_host}
+    #   port: ${tidb_port}
+    #   user: ${tidb_user}
+    #   secretName: backup-demo1-tidb-secret
+    br:
+      cluster: basic
+      clusterNamespace: tidb-cluster
+      # logLevel: info
+      # statusAddr: ${status-addr}
+      # concurrency: 4
+      # rateLimit: 0
+      # checksum: true
+      # sendCredToTikv: true
+    gcs:
+      secretName: gcs-secret1
+      projectId: storage-project-352409
+      bucket: tidb-test-versent
+      prefix: test-tidb
+      # location: us-east1
+      # storageClass: STANDARD_IA
+      # objectAcl: private
